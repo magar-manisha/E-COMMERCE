@@ -1,0 +1,22 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+<div style="display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;">
+    {% if not request.user.is_authenticated %}
+    <form action='.' method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit'>Register</button>
+    </form>
+    <h1>Already have an account?</h1>
+    <p> Please <a href='/login'>Login</a></p>
+    {% else %}
+        <h1>You'r already logged in and cannot register.</h1>
+        <p> Would you like to <a href='/logout/'>Logout</a>?</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

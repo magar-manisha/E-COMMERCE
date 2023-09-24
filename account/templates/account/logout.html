@@ -1,0 +1,18 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+<div style="display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;">    {% if request.user.is_authenticated %}
+    <form action='.' method='POST'>
+        {% csrf_token %}
+        <h1>Are you sure you wanna log out</h1>
+        <button type='submit'>yes, Logout</button>
+    </form>
+    {% else %}
+        <h1>You'r already logged out.</h1>
+        <p> Would you like to <a href='/login'>Login</a></p>
+    {% endif %}
+</div>
+{% endblock content %}
